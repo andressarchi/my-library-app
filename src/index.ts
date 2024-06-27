@@ -1,6 +1,7 @@
 import { book } from "./libros";
 import { libreria } from "./libreria";
 import { libros } from "./librosPredeterminados";
+import { buscarPorTitulo,eliminarLibro,agregarLibro,verLibros } from "./funciones";
 /**
  * !Instalacion de librerias Prompt-Sync
  */
@@ -10,56 +11,13 @@ const prompt = promptSync();
 
 //Constante de la seccion
 
-const seccion = new libreria(
-  "Realismo Mágico",
-  "Sección dedicada a libros del género Realismo Mágico",
+ export const seccion = new libreria(
+  "accion",
+  "libreria de con libros del genero de accion",
   libros
 );
 
-//Funcion agregar libros a la lista
-function agregarLibro(): void {
-  const ISBN = prompt("Ingrese el ISBN del libro: ");
-  const Titulo = prompt("Ingrese el título del libro: ");
-  const Precio = parseFloat(prompt("Ingrese el precio del libro: "));
-  const Stock = parseInt(prompt("Ingrese el stock del libro: "), 10);
-  const idioma = prompt("Ingrese el Idioma del Libro: ");
 
-  const libro = new book(ISBN, Titulo, Precio, Stock, idioma);
-  seccion.AgregarLibro(libro);
-  console.log("Libro agregado correctamente.");
-}
-
-//Funcion Eliminar libros a la lista
-
-function eliminarLibro(): void {
-  const ISBN = prompt("Ingrese el ISBN del libro a eliminar: ");
-  seccion.EliminarLibro(ISBN);
-  console.log("Libro eliminado correctamente.");
-}
-
-//Funcion ver libros a la lista
-
-function verLibros(): void {
-  const libros = seccion.Verlibros();
-  if (libros.length === 0) {
-    console.log("no hay libros disponibles");
-  } else {
-    libros.forEach((libro) => {
-      console.log(`ISBN: ${libro.ISBN},
-                Título: ${libro.Titulo},
-                Precio: ${libro.Precio},
-                Stock: ${libro.Stock},
-                Idioma: ${libro.idioma},
-                `);
-    });
-  }
-}
-function buscarPorTitulo(){
-    let libro :string=prompt(`ingrese el titulo de el libro:`)
-  seccion.porTitulo(libro)
-  
-    
-}
 //Funcion Menu (Consola-Terminal)
 
 function menu(): void {
